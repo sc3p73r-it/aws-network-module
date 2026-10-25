@@ -1,0 +1,25 @@
+# Copy to terraform.tfvars and adjust for your environment.
+region               = "us-east-1"
+name                 = "lab"
+cidr_block           = "10.20.0.0/16"
+az_count             = 3
+nat_gateway_strategy = "per_az"
+
+# Lock the load balancer down to your own networks in real environments.
+web_ingress_cidr_blocks = ["0.0.0.0/0"]
+
+interface_endpoint_services = [
+  "ssm",
+  "ssmmessages",
+  "ec2messages",
+  "logs",
+  "secretsmanager",
+]
+
+enable_flow_logs = true
+
+tags = {
+  Environment = "lab"
+  Owner       = "platform"
+  ManagedBy   = "terraform"
+}
